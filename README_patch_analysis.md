@@ -85,8 +85,57 @@ We drop rows where: - `avg_players` is missing - `lag_avg_players` is
 missing
 
 ------------------------------------------------------------------------
+### Step 6: Calculating Developer Emphasis of levers
+We compute how developers allocate attention across patch types by averaging the relative share of each lever:
 
-## Models
+Competitive
+Cosmetic
+Seasonal
+Difficulty
+
+This is done:
+
+overall across all patches
+separately by game
+
+This produces developer-side emphasis weights used for comparison with consumer preferences.
+
+### Step 7: Visualizing Consumer vs Developer Comparison
+
+Manual input of averages from LDA Analysis and Step 6. Change if necessary.
+
+Provides a bar chart across the four levers:
+Competitive progression
+Cosmetics & identity
+Seasonal systems
+Difficulty & balance
+
+This highlights misalignment between what players value and what developers emphasize, providing key managerial insight.
+
+### Step 8: Try an Assortment of Models
+We estimate multiple models to ensure robustness:
+
+1. OLS (Baseline)
+Predicts engagement using all levers and controls
+2. Mixed-Effects Model (HLM)
+Accounts for differences across games using random intercepts
+Optional random slopes allow lever effects to vary by game
+3. Fixed Effects Panel Model
+Controls for all time-invariant differences across games
+Uses within-game variation over time
+4. Fixed Effects with Clustered Standard Errors
+Adjusts inference for time dependence and heteroskedasticity
+Provides more reliable significance testing
+
+All models include:
+
+lagged engagement
+patch content levers
+controls (season, time since release, patch size)
+
+Final results are saved for comparison and interpretation.
+
+## Models Tried in Step 5 for different outcomes
 
 ### Model 1 --- Engagement Level
 
